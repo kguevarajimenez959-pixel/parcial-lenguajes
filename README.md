@@ -1,1 +1,1 @@
-# parcial-lenguajes
+# PARCIAL LENGUAJES
