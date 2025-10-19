@@ -143,6 +143,142 @@ Como se puede ver en los resultados, el algoritmo **LL(1)** es significativament
 
 ## Punto 5
 
+# Proyecto – Analizador léxico y sintáctico de expresiones aritméticas
+
+Este proyecto implementa un analizador **léxico** y **sintáctico** simple en Python capaz de interpretar expresiones aritméticas con suma, resta, multiplicación, división y paréntesis.
+
+
+## Instalación
+
+### 1. Crear la carpeta del proyecto
+
+```
+mkdir punto5
+cd punto5
+```
+
+### 2. Crear los archivos necesarios
+
+#### 2.1 Archivo `lexer.py`
+
+```
+nano lexer.py
+```
+
+Implementar el analizador léxico con las expresiones regulares para reconocer tokens.
+
+#### 2.2 Archivo `parser.py`
+
+```
+nano parser.py
+```
+
+Implementar el analizador sintáctico con la gramática definida.
+
+#### 2.3 Archivo `main.py`
+
+```
+nano main.py
+```
+
+Crear el punto de entrada que integra lexer y parser.
+
+
+## Cómo ejecutar el proyecto
+
+
+### 1. Entrar a la carpeta del proyecto
+
+```
+cd punto5
+```
+
+### 2. Ejecutar el programa principal
+
+```
+python3 -m punto5.main
+
+```
+
+El programa abre un modo interactivo tipo consola donde puedes ingresar expresiones aritméticas.
+
+
+### Ejemplos de entrada válida
+
+```
+> 3 + 5
+OK = 8.0
+
+> 10 - 2 * 3
+OK = 4.0
+
+> (2 + 3) * 4
+OK = 20.0
+
+> 100 / (5 + 5)
+OK = 10.0
+```
+
+### Manejo de errores
+
+```
+> (3 + )
+Error: Expresión inválida en pos 4
+
+> 5 * * 2
+Error: Expresión inválida en pos 4
+```
+
+### Salir del programa
+
+Para salir del programa, presiona **Ctrl + D**
+
+
+## Explicación del funcionamiento
+
+### `lexer.py` - Analizador Léxico
+
+- Define expresiones regulares para reconocer tokens:
+  - `NUM`: Números enteros y decimales
+  - `PLUS`: Operador suma (+)
+  - `MINUS`: Operador resta (-)
+  - `MUL`: Operador multiplicación (*)
+  - `DIV`: Operador división (/)
+  - `LP`: Paréntesis izquierdo (()
+  - `RP`: Paréntesis derecho ())
+- Ignora espacios y saltos de línea
+- Devuelve una secuencia de objetos `Token` con tipo, lexema y posición
+
+### `parser.py` - Analizador Sintáctico
+
+Implementa un **parser descendente recursivo** con la siguiente gramática:
+
+```
+E -> T ((PLUS|MINUS) T)*
+T -> F ((MUL|DIV) F)*
+F -> NUM | LP E RP
+```
+
+**Características:**
+- Usa funciones `E()`, `T()`, `F()` para manejar precedencia de operadores
+- Construye nodos (`Num`, `Bin`) para formar un árbol de sintaxis abstracta (AST)
+- Incluye `eval_ast()` para evaluar el AST y obtener el resultado numérico
+- Respeta el orden de operaciones: paréntesis > multiplicación/división > suma/resta
+
+
+## Características del analizador
+
+Soporta operaciones básicas: `+`, `-`, `*`, `/`  
+Maneja paréntesis para control de precedencia  
+Reconoce números enteros y decimales  
+Reporta errores con posición aproximada  
+Respeta el orden de operaciones matemáticas  
+Interfaz interactiva tipo REPL (Read-Eval-Print-Loop)
+
+
+
+
+
 <img width="507" height="632" alt="imagen" src="https://github.com/user-attachments/assets/8ea4eed6-28e8-47f5-bfcd-c3d71e392d79" />
 
 
