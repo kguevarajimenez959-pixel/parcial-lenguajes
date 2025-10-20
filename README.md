@@ -1,5 +1,124 @@
 # PARCIAL LENGUAJES
 
+## Punto 3
+
+## Objetivo
+
+Implementar un analizador sintáctico **ascendente** para la gramática de expresiones:
+
+```
+E → E + T | T
+T → T * F | F
+F → ( E ) | id
+```
+
+y documentar: transformación a **LL(1)**, **FIRST**, **FOLLOW**, **PREDICT**, algoritmo con **pila**, y pruebas. 
+
+
+## 1) Gramática de partida y transformación a LL(1)
+
+### 1.1 Gramática original
+
+```
+E → E + T | T
+T → T * F | F
+F → ( E ) | id
+```
+
+Contiene recursión izquierda inmediata en `E` y `T`. 
+
+### 1.2 Gramática LL(1) resultante
+
+Eliminando recursión izquierda y usando no terminales auxiliares:
+
+```
+E  → T E'
+E' → + T E' | ε
+T  → F T'
+T' → * F T' | ε
+F  → ( E ) | id
+```
+
+
+## 2) Conjuntos FIRST, FOLLOW y PREDICT
+
+El proyecto calcula los conjuntos de forma genérica:
+
+* **FIRST** para símbolos y secuencias.
+* **FOLLOW** para no terminales con `EOF = $`.
+* **PREDICT** para cada producción, combinando FIRST(α) y FOLLOW(A) cuando procede `ε`.
+
+Implementación en `first_follow_predict.py`. Constantes en `constantes.py`.  
+
+
+## 3) Analizador **ascendente** basado en pila
+
+Se usa un **parser SLR(1)**:
+
+1. Construcción de colección canónica de **items LR(0)**: `cierre` y `ir_a`.
+2. Construcción de **tablas ACTION/GOTO** con **FOLLOW** para reducciones.
+3. Bucle de análisis con **pila de estados**, acción **shift/reduce/accept**.
+
+Construcción de tablas: `construccion_slr.py`. Ejecución del parser: `parse_slr` en `scanner_parser.py`.  
+
+Tokenización mínima: `id`, `+`, `*`, `(`, `)`, y fin `$`. 
+
+---
+
+## 4) Estructura del proyecto
+
+* `gramatica.txt`: gramática original en formato texto. 
+* `constantes.py`: `EPS = "ε"`, `EOF = "$"`. 
+* `utilidades_gramatica.py`: parser de gramáticas y **LL(1) estándar**. 
+* `first_follow_predict.py`: FIRST, FOLLOW, PREDICT. 
+* `construccion_slr.py`: colección canónica y tablas SLR(1). 
+* `scanner_parser.py`: escáner, `parse_slr`, trazas LL(1). 
+* `funciones.py`: reexporta utilidades para `main.py`. 
+* `main.py`: interfaz CLI. 
+
+---
+
+## 5) Uso rápido
+
+### 5.1 Mostrar gramáticas (original y LL(1))
+
+```bash
+python main.py --info
+```
+### 5.2 Mostrar Frist, Follow, predict, etc
+
+```bash
+python main.py 
+```
+(Despues de ejecutar poner que analizar, ej: id + id + id)
+
+Imprime la gramática de `gramatica.txt` y la LL(1) fija. 
+
+
+## 6) Pruebas sugeridas
+
+Aceptadas:
+
+```
+id
+(id)
+id + id
+id * id
+id + id * id
+(id + id) * id
+```
+
+Rechazadas:
+
+```
++
+id +
+* id
+(id
+id * * id
+```
+
+
 ## Punto 4
 
 # Proyecto Punto 4 – Comparación de rendimiento: CYK vs LL(1)
