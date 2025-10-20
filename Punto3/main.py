@@ -1,10 +1,3 @@
-# main.py
-# Uso:
-#   python main.py --info            # Solo gramáticas
-#   python main.py "expr..." [...]   # Por args: traza LL(1) de cada expr, luego FIRST/FOLLOW/PREDICT solo de lo usado
-#   echo "expr" | python main.py     # Por stdin
-#   python main.py                   # Interactivo
-
 import funciones
 
 
