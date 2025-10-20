@@ -1,0 +1,59 @@
+Programa        = { Sentencia ";" } ;
+
+Sentencia       = Crear | Leer | Actualizar | Borrar ;
+
+Crear           = "CREATE" "INTO" Ident "(" CamposVal ")" ;
+CamposVal       = CampoVal { "," CampoVal } ;
+CampoVal        = Ident ":" Exp ;
+
+Leer            = "READ" "FROM" Ident [ Seleccion ] [ Filtro ] [ Orden ] [ Limite ] ;
+Seleccion       = "SELECT" ( "*" | ListaIdent ) ;
+Filtro          = "WHERE" ExprBool ;
+Orden           = "ORDER" "BY" Ordenes ;
+Ordenes         = OrdenElem { "," OrdenElem } ;
+OrdenElem       = Ident [ "ASC" | "DESC" ] ;
+Limite          = "LIMIT" Entero ;
+
+Actualizar      = "UPDATE" Ident "SET" Asignaciones [ Filtro ] ;
+Asignaciones    = Asign { "," Asign } ;
+Asign           = Ident "=" Exp ;
+
+Borrar          = "DELETE" "FROM" Ident [ Filtro ] ;
+
+/* Expresiones */
+Exp             = Literal
+                | Ident
+                | Llamado
+                | "(" Exp ")"
+                | Exp "+" Exp
+                | Exp "-" Exp
+                | Exp "*" Exp
+                | Exp "/" Exp ;
+
+ExprBool        = BoolTerm { "OR" BoolTerm } ;
+BoolTerm        = BoolFact { "AND" BoolFact } ;
+BoolFact        = [ "NOT" ] BoolAtom ;
+BoolAtom        = "(" ExprBool ")"
+                | Comparacion ;
+Comparacion     = Exp OpComp Exp ;
+OpComp          = "=" | "!=" | "<" | "<=" | ">" | ">=" | "LIKE" | "IN" ;
+
+/* Listas y llamados */
+ListaIdent      = Ident { "," Ident } ;
+Llamado         = Ident "(" [ ListaArgs ] ")" ;
+ListaArgs       = Exp { "," Exp } ;
+
+/* Léxicos */
+Ident           = Letra { Letra | Digito | "_" } ;
+Entero          = Digito { Digito } ;
+Real            = Entero "." Entero ;
+Cadena          = "\"" { Caracter } "\"" ;
+Booleano        = "TRUE" | "FALSE" ;
+Nulo            = "NULL" ;
+
+Literal         = Cadena | Real | Entero | Booleano | Nulo ;
+
+Letra           = "A"…"Z" | "a"…"z" ;
+Digito          = "0"…"9" ;
+Caracter        = cualquier carácter excepto comillas dobles o salto de línea ;
+
