@@ -1,4 +1,12 @@
 # PARCIAL LENGUAJES
+## Elaborado por:
+
+  Samuel Chaves Mora
+  
+  Cristian Bello Cuesta
+  
+  Daniel Ayala Guzman
+
 ## Punto 1 
 Diseñar una gramática de un lenguaje de Programación que permita hacer las operaciones de CRUD en una base de datos.
 
