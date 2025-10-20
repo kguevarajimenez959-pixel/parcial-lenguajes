@@ -1,0 +1,5 @@
+CREATE INTO clientes ( id: 1, nombre: "Juan" );
+READ FROM clientes SELECT id, nombre WHERE id = 1;
+UPDATE clientes SET nombre = "Pedro" WHERE id = 1;
+DELETE FROM clientes WHERE id = 1;
+
