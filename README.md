@@ -346,6 +346,12 @@ NOT                 { return NOT; }
 ```
 
 ## Txt de Prueba
+```txt
+CREATE INTO clientes ( id: 1, nombre: "Samuel" );
+READ FROM clientes SELECT id, nombre WHERE id = 1;
+UPDATE clientes SET nombre = "Pedro" WHERE id = 1;
+DELETE FROM clientes WHERE id = 1;
+```
 
 ## Punto 3
 
