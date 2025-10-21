@@ -1,11 +1,7 @@
 # PARCIAL LENGUAJES
 ## Elaborado por:
 
-  Samuel Chaves Mora
-  
-  Cristian Bello Cuesta
-  
-  Daniel Ayala Guzman
+  Kevin Andres Guevara Jimenez
 
 ## Punto 1 
 Diseñar una gramática de un lenguaje de Programación que permita hacer las operaciones de CRUD en una base de datos.
@@ -601,7 +597,7 @@ Como se puede ver en los resultados, el algoritmo **LL(1)** es significativament
 
 ## Evidencias
 
-<img width="542" height="830" alt="imagen" src="https://github.com/user-attachments/assets/6b524e48-7f7c-4ee1-b6f4-01b6add5b711" />
+<img width="542" height="620" alt="imagen" src="https://github.com/user-attachments/assets/6b524e48-7f7c-4ee1-b6f4-01b6add5b711" />
 
 
 
