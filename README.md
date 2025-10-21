@@ -597,8 +597,7 @@ Como se puede ver en los resultados, el algoritmo **LL(1)** es significativament
 
 ## Evidencias
 
-<img width="542" height="830" alt="imagen" src="https://github.com/user-attachments/assets/6b524e48-7f7c-4ee1-b6f4-01b6add5b711" />
-
+<img width="526" height="706" alt="Captura desde 2025-10-21 08-51-08" src="https://github.com/user-attachments/assets/bc49426e-1e2d-4aeb-ac4b-06201a2c421f" />
 
 
 
