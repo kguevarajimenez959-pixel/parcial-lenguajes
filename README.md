@@ -754,7 +754,8 @@ Interfaz interactiva tipo REPL (Read-Eval-Print-Loop)
 
 ## Evidencias
 
+<img width="502" height="524" alt="Captura desde 2025-10-21 08-42-12" src="https://github.com/user-attachments/assets/727beb47-6f92-4e72-bd1c-657ec529029a" />
 
-<img width="507" height="632" alt="imagen" src="https://github.com/user-attachments/assets/8ea4eed6-28e8-47f5-bfcd-c3d71e392d79" />
+
 
 
